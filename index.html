@@ -496,6 +496,67 @@ nav .nav-links{display:none}
 .contact-grid{grid-template-columns:1fr}
 .pkg-grid{grid-template-columns:1fr}
 }
+
+
+/* COOKIE BANNER TERMINAL THEME */
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 400px;
+  background: var(--bg1);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.4s ease-out;
+}
+.cookie-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.cookie-text a {
+  color: var(--cyan);
+  text-decoration: underline;
+}
+.cookie-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.cookie-btn-accept {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--green);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cookie-btn-accept:hover { background: #50f070; }
+.cookie-btn-decline {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--dim);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cookie-btn-decline:hover { border-color: var(--red); color: var(--red); }
+
+@media(max-width: 480px) {
+  #cookie-banner { left: 20px; right: 20px; bottom: 10px; }
+}
+
 </style>
 </head>
 <body>
@@ -919,14 +980,81 @@ nav .nav-links{display:none}
   </div>
 </section>
 
+
+<section id="privacy-policy" style="background: var(--bg1);">
+  <div class="wrap">
+    <div class="s-tag">legal stuff</div>
+    <h2 class="s-title">Privacy Policy</h2>
+    <div style="font-size: 13px; color: var(--muted); max-width: 700px; display: flex; flex-direction: column; gap: 16px;">
+      <p>Your privacy matters. This policy outlines how data is handled on <strong>piyusha.dev</strong>.</p>
+      
+      <p><strong style="color: var(--text)">1. Information Collection:</strong> We collect non-personally identifiable metrics such as page views, device types, and session duration using cookies to understand how visitors interact with our portfolio. We do not pass explicitly identifying personal identifiers to third-party tools.</p>
+      
+      <p><strong style="color: var(--text)">2. Analytics Disclosure:</strong> This website utilizes Google Analytics to monitor engagement levels. Google uses tracking cookies and device graphs to compile these reports.</p>
+      
+      <p><strong style="color: var(--text)">3. Mandatory Link:</strong> To see exactly how your interaction logs are evaluated by Google platforms, please review the official declaration: 
+        <a href="https://www.google.com/policies/privacy/partners/" target="_blank" style="color: var(--green); text-decoration: underline;">How Google uses information from sites or apps that use our services</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="footer-copy">© 2026 <span>piyusha.dev</span> — Bhubaneswar, Odisha</div>
-      <div class="footer-copy">Built to help local businesses grow. <span>Not just websites.</span></div>
+      <div class="footer-copy">
+        Built to help local businesses grow. <a href="#privacy-policy" style="color: var(--muted); text-decoration: underline; margin-left:10px;">Privacy Policy</a>
+      </div>
     </div>
-  </div>
 </footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display: none;">
+  <p class="cookie-text">
+    <span style="color: var(--green)">// Notice:</span> We use cookies and Google Analytics to analyze site traffic and improve your experience. Read our <a href="#privacy">Privacy Policy</a>.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn-decline" onclick="acceptCookies(false)">Decline</button>
+    <button class="cookie-btn-accept" onclick="acceptCookies(true)">Accept</button>
+  </div>
+</div>
+
+<script>
+  // Insert your actual GA4 Tracking ID here
+  const GA_MEASUREMENT_ID = 'G-TD9BGQVHPC'; 
+
+  // Check if user already made a choice
+  document.addEventListener("DOMContentLoaded", function() {
+    const consent = localStorage.getItem("cookie_consent");
+    if (!consent) {
+      document.getElementById("cookie-banner").style.display = "flex";
+    } else if (consent === "true") {
+      loadGoogleAnalytics();
+    }
+  });
+
+  function acceptCookies(isAccepted) {
+    localStorage.setItem("cookie_consent", isAccepted);
+    document.getElementById("cookie-banner").style.display = "none";
+    if (isAccepted) {
+      loadGoogleAnalytics();
+    }
+  }
+
+  function loadGoogleAnalytics() {
+    // Dynamically inject Google Analytics script tag only on consent
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+  }
+</script>
 
 </body>
 </html>
