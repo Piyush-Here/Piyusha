@@ -298,179 +298,6 @@ display:flex;gap:14px;align-items:flex-start;margin-bottom:32px;
 .notice p{font-size:13px;color:var(--text);line-height:1.7}
 .notice p strong{color:var(--amber);font-weight:600;font-family:var(--mono)}
 
-/* ================================================
-   TEMPLATES SHOWCASE SECTION
-   ================================================ */
-#templates {
-  padding: 80px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Terminal header bar above the grid */
-.terminal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: var(--radius) var(--radius) 0 0;
-  padding: 10px 16px;
-  margin-bottom: 0;
-}
-.terminal-dots {
-  display: flex;
-  gap: 6px;
-}
-.terminal-dots span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.dot-red   { background: #f85149; }
-.dot-amber { background: #e8b923; }
-.dot-green { background: #39d353; }
-.terminal-title {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  margin-left: 6px;
-  letter-spacing: 0.04em;
-}
-
-/* Template grid container with terminal-window chrome */
-.tpl-window {
-  border: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
-  background: var(--bg1);
-  padding: 24px;
-}
-
-.tpl-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
-}
-
-/* Individual template card */
-.tpl-card {
-  position: relative;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-.tpl-card:hover {
-  border-color: var(--green-border);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(57, 211, 83, 0.08);
-}
-
-/* iframe preview wrapper — fixed height, no interaction */
-.tpl-preview {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: var(--bg2);
-}
-.tpl-preview iframe {
-  width: 160%;          /* scale the site down visually */
-  height: 160%;
-  transform: scale(0.625);
-  transform-origin: top left;
-  border: none;
-  pointer-events: none; /* view-only */
-  display: block;
-}
-
-/* Hover overlay — appears on card hover, not iframe hover */
-.tpl-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(8, 11, 15, 0.72);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
-  backdrop-filter: blur(2px);
-}
-.tpl-card:hover .tpl-overlay {
-  opacity: 1;
-}
-.tpl-overlay-btn {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  color: #000;
-  background: var(--green);
-  padding: 9px 20px;
-  border-radius: 6px;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  transition: background 0.15s;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.tpl-overlay-btn:hover {
-  background: #50f070;
-  text-decoration: none;
-}
-
-/* Card footer — label + industry tag */
-.tpl-footer {
-  padding: 14px 16px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.tpl-name {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-}
-.tpl-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--cyan);
-  background: var(--cyan-dim);
-  border: 1px solid rgba(88, 208, 228, 0.2);
-  padding: 3px 9px;
-  border-radius: 4px;
-  white-space: nowrap;
-  letter-spacing: 0.04em;
-}
-
-/* Loading shimmer for iframes */
-.tpl-preview::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--bg2) 25%, var(--bg3) 50%, var(--bg2) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.6s infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-.tpl-preview.loaded::before {
-  display: none;
-}
-@keyframes shimmer {
-  from { background-position: 200% 0 }
-  to   { background-position: -200% 0 }
-}
-
-@media(max-width:640px){
-  .tpl-grid { grid-template-columns: 1fr; }
-}
-
 /* FOOTER */
 footer{
 padding:40px 0;border-top:1px solid var(--border);
@@ -567,7 +394,6 @@ nav .nav-links{display:none}
     <div class="nav-links">
       <a class="nav-link" href="#services">services</a>
       <a class="nav-link" href="#packages">pricing</a>
-      <a class="nav-link" href="#templates">templates</a>
       <a class="nav-link" href="#process">how it works</a>
       <a class="nav-link" href="#contact">contact</a>
     </div>
@@ -594,13 +420,13 @@ nav .nav-links{display:none}
       I don't sell websites. I build systems that bring you <strong>more bookings, more walk-ins, and more revenue</strong>.
     </p>
     <div class="hero-cta">
-      <a href="https://wa.me/message/DHRHZ4C23TPSF1?text=Hi+Piyusha,+I+want+to+grow+my+business+online" class="btn-primary" target="_blank">→ WhatsApp Me Now</a>
+      <a href="https://wa.me/917978271500?text=Hi+Piyusha%2C+I+run+a+local+business+in+Bhubaneswar+and+I+want+to+grow+online.+Can+you+help%3F" class="btn-primary" target="_blank">→ WhatsApp Me Now</a>
       <a href="#packages" class="btn-secondary">View Pricing</a>
     </div>
     <div class="stat-row">
       <div class="stat-box"><span class="stat-num">₹0</span><span class="stat-label">setup cost to start</span></div>
       <div class="stat-box"><span class="stat-num">7d</span><span class="stat-label">first results</span></div>
-      <div class="stat-box"><span class="stat-num">5</span><span class="stat-label">services in starter pack</span></div>
+      <div class="stat-box"><span class="stat-num">10+</span><span class="stat-label">services offered</span></div>
       <div class="stat-box"><span class="stat-num">BBSR</span><span class="stat-label">locally based</span></div>
     </div>
   </div>
@@ -678,10 +504,12 @@ nav .nav-links{display:none}
     <h2 class="s-title">Simple monthly packages.</h2>
     <p class="s-desc">No hidden costs. No long contracts. If it doesn't bring results in 30 days, we talk about it.</p>
 
+    <!--
     <div class="notice">
       <span class="notice-icon">⚡</span>
-      <p><strong>June Launch Offer:</strong> First 2 clients in Bhubaneswar get 50% off the first month. My way of building local case studies and your way of getting results at half the cost.</p>
+      <p><strong>July Launch Offer:</strong> First 2 clients in Bhubaneswar get 50% off the first month. My way of building local case studies and your way of getting results at half the cost.</p>
     </div>
+    -->
 
     <div class="pkg-grid">
       <!-- Starter -->
@@ -689,13 +517,13 @@ nav .nav-links{display:none}
         <div class="pkg-badge">starter</div>
         <div class="pkg-name">Get Found</div>
         <div class="pkg-price">₹4,999 <span>/ month</span></div>
-        <div class="pkg-desc">For businesses that have zero online presence and need to start getting discovered.</div>
+        <div class="pkg-desc">For businesses with zero online presence that need to start getting discovered.</div>
         <ul class="pkg-list">
-          <li>Business website (5 pages)</li>
-          <li>Google Business Profile setup</li>
+          <li>Google Business Profile setup + management</li>
+          <li>8 social media posts/month</li>
           <li>WhatsApp integration</li>
-          <li>4 social media posts/month</li>
           <li>Monthly performance report</li>
+          <li>Onboarding audit (free)</li>
         </ul>
       </div>
 
@@ -703,10 +531,11 @@ nav .nav-links{display:none}
       <div class="pkg-card featured">
         <div class="pkg-badge">⭐ most popular</div>
         <div class="pkg-name">Get Customers</div>
-        <div class="pkg-price">₹9,999 <span>/ month</span></div>
+        <div class="pkg-price">₹8,999 <span>/ month</span></div>
         <div class="pkg-desc">For businesses ready to actively generate leads, bookings, and repeat customers.</div>
         <ul class="pkg-list">
           <li>Everything in Starter</li>
+          <li>5-page business website</li>
           <li>Booking / appointment system</li>
           <li>WhatsApp automation</li>
           <li>Review collection system</li>
@@ -719,15 +548,16 @@ nav .nav-links{display:none}
       <div class="pkg-card">
         <div class="pkg-badge">premium</div>
         <div class="pkg-name">Get Growth</div>
-        <div class="pkg-price">₹18,999 <span>/ month</span></div>
-        <div class="pkg-desc">Full-stack growth engine. Ads, automation, loyalty, and analytics all in one.</div>
+        <div class="pkg-price">₹15,999 <span>/ month</span></div>
+        <div class="pkg-desc">Full-stack growth engine. Ads, automation, content, and analytics — all handled.</div>
         <ul class="pkg-list">
-          <li>Everything in Growth</li>
-          <li>Meta Ads + Google Ads</li>
+          <li>Everything in Get Customers</li>
+          <li>Meta Ads + Google Ads management</li>
+          <li>Ad spend is separate — you pay Meta/Google directly</li>
+          <li>Email marketing campaigns</li>
+          <li>Canva creatives (posters, banners)</li>
+          <li>Video ad shoot + edit (1/month)</li>
           <li>CRM & lead tracking</li>
-          <li>Loyalty / referral program</li>
-          <li>AI chatbot on website</li>
-          <li>E-commerce / online store</li>
           <li>Monthly strategy call</li>
         </ul>
       </div>
@@ -735,139 +565,14 @@ nav .nav-links{display:none}
 
     <div style="margin-top:24px;padding:20px 22px;background:var(--bg1);border:1px solid var(--border);border-radius:var(--radius)">
       <p style="font-family:var(--mono);font-size:13px;color:var(--muted)">
-        <span style="color:var(--green)">// note:</span> One-time website builds start at ₹7,999. Google Business setup only: ₹1,999.
-        Custom quotes available — just send a WhatsApp message describing your business.
+        <span style="color:var(--green)">// one-time projects:</span> Website only ₹6,999–₹9,999 &nbsp;|&nbsp; Website + booking/store ₹12,999–₹18,999 &nbsp;|&nbsp; GMB setup only ₹1,499–₹1,999 &nbsp;|&nbsp; Social media account setup ₹1,999–₹2,999 &nbsp;|&nbsp; Ad campaign setup (Google/Meta) ₹2,999–₹4,999 &nbsp;|&nbsp; Video ad shoot + edit ₹3,999–₹6,999 &nbsp;|&nbsp; Email marketing setup ₹2,499–₹3,999 &nbsp;|&nbsp; Canva poster/banner ₹299–₹499 each &nbsp;|&nbsp; Domain registration + setup ₹999 (one-time, domain cost separate).<br><br>
+        <span style="color:var(--green)">// hosting + maintenance:</span> ₹300–₹500/mo — your site stays live, fast, and updated. No technical headaches on your end. Hosting, backups, and minor changes all handled.<br><br>
+        <span style="color:var(--green)">// note:</span> All retainers include a ₹999 one-time onboarding fee on first invoice. Ad spend always paid directly by you to Meta/Google — never bundled in my fee. Custom quotes available.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ================================================
-     TEMPLATES SHOWCASE
-     ================================================ -->
-<section id="templates">
-  <div class="wrap">
-    <div class="s-tag">live templates</div>
-    <h2 class="s-title">Real websites. Real industries.</h2>
-    <p class="s-desc">Every template below is a fully functional site — not a mockup. Hover to open. These are the kind of sites your business gets.</p>
-
-    <div class="terminal-header">
-      <div class="terminal-dots">
-        <span class="dot-red"></span>
-        <span class="dot-amber"></span>
-        <span class="dot-green"></span>
-      </div>
-      <span class="terminal-title">piyusha@dev:~/templates $ ls -la *.html</span>
-    </div>
-    <div class="tpl-window">
-      <div class="tpl-grid">
-
-        <!-- Medical Clinic -->
-        <div class="tpl-card" onclick="window.open('https://clinictemplate-seven.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-clinic">
-            <iframe src="https://clinictemplate-seven.vercel.app/" loading="lazy" title="Medical Clinic Template" onload="document.getElementById('prev-clinic').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://clinictemplate-seven.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Medical Clinic</span>
-            <span class="tpl-tag">healthcare</span>
-          </div>
-        </div>
-
-        <!-- Hair Salon -->
-        <div class="tpl-card" onclick="window.open('https://salontemplate-ten.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-salon">
-            <iframe src="https://salontemplate-ten.vercel.app/" loading="lazy" title="Hair Salon Template" onload="document.getElementById('prev-salon').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://salontemplate-ten.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Hair Salon</span>
-            <span class="tpl-tag">beauty</span>
-          </div>
-        </div>
-
-        <!-- Gym -->
-        <div class="tpl-card" onclick="window.open('https://iron-forge-gym-ebon.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-gym">
-            <iframe src="https://iron-forge-gym-ebon.vercel.app/" loading="lazy" title="Gym Template" onload="document.getElementById('prev-gym').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://iron-forge-gym-ebon.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Iron Forge Gym</span>
-            <span class="tpl-tag">fitness</span>
-          </div>
-        </div>
-
-        <!-- Clothing Store -->
-        <div class="tpl-card" onclick="window.open('https://vogue-stitch-template.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-vogue">
-            <iframe src="https://vogue-stitch-template.vercel.app/" loading="lazy" title="Clothing Store Template" onload="document.getElementById('prev-vogue').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://vogue-stitch-template.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Vogue Stitch</span>
-            <span class="tpl-tag">clothing</span>
-          </div>
-        </div>
-
-        <!-- EdTech -->
-        <div class="tpl-card" onclick="window.open('https://edu-spark-template.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-edu">
-            <iframe src="https://edu-spark-template.vercel.app/" loading="lazy" title="EdTech Platform Template" onload="document.getElementById('prev-edu').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://edu-spark-template.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">EduSpark Platform</span>
-            <span class="tpl-tag">edtech</span>
-          </div>
-        </div>
-
-        <!-- Dental -->
-        <div class="tpl-card" onclick="window.open('https://bright-smile-template-beta.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-dental">
-            <iframe src="https://bright-smile-template-beta.vercel.app/" loading="lazy" title="Dental Practice Template" onload="document.getElementById('prev-dental').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://bright-smile-template-beta.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Bright Smile Dental</span>
-            <span class="tpl-tag">dental</span>
-          </div>
-        </div>
-
-        <!-- Events -->
-        <div class="tpl-card" onclick="window.open('https://evoque-events.vercel.app/','_blank')">
-          <div class="tpl-preview" id="prev-events">
-            <iframe src="https://evoque-events.vercel.app/" loading="lazy" title="Event Planner Template" onload="document.getElementById('prev-events').classList.add('loaded')"></iframe>
-            <div class="tpl-overlay">
-              <a href="https://evoque-events.vercel.app/" target="_blank" class="tpl-overlay-btn" onclick="event.stopPropagation()">↗ View Live</a>
-            </div>
-          </div>
-          <div class="tpl-footer">
-            <span class="tpl-name">Evoque Events</span>
-            <span class="tpl-tag">events</span>
-          </div>
-        </div>
-
-      </div><!-- /tpl-grid -->
-    </div><!-- /tpl-window -->
-
-    <p style="font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:16px;text-align:right">
-      // 7 templates deployed → all industries covered
-    </p>
-  </div>
-</section>
 
 <!-- PROCESS -->
 <section id="process">
@@ -935,7 +640,7 @@ nav .nav-links{display:none}
 
     <div class="contact-grid">
       <div class="contact-info">
-        <a href="https://wa.me/message/DHRHZ4C23TPSF1?text=Hi+Piyusha,+I+want+to+grow+my+business+online" target="_blank" class="contact-row" style="text-decoration:none">
+        <a href="https://wa.me/917978271500?text=Hi+Piyusha%2C+I+run+a+local+business+in+Bhubaneswar+and+I+want+to+grow+online.+Can+you+help%3F" target="_blank" class="contact-row" style="text-decoration:none">
           <span class="contact-icon">💬</span>
           <div>
             <div class="contact-label">whatsapp (fastest response)</div>
@@ -972,7 +677,7 @@ nav .nav-links{display:none}
           I want more customers from Google. Can you help?"<br><br>
           That's it. I'll take care of the rest.
         </div>
-        <a href="https://wa.me/message/DHRHZ4C23TPSF1?text=Hi+Piyusha,+I+want+more+customers+for+my+business+in+Bhubaneswar" class="btn-primary" target="_blank" style="display:inline-flex">
+        <a href="https://wa.me/917978271500?text=Hi+Piyusha%2C+I+run+a+%5Bsalon+%2F+clinic+%2F+restaurant%5D+in+%5Barea%5D.+I+want+more+customers+from+Google.+Can+you+help%3F" class="btn-primary" target="_blank" style="display:inline-flex">
           → Open WhatsApp
         </a>
       </div>
