@@ -66,6 +66,27 @@ transition:all 0.15s;text-transform:lowercase;
 letter-spacing:0.02em;
 }
 .nav-link:hover{color:var(--green);background:var(--green-dim);text-decoration:none}
+.nav-hamburger{
+display:none;flex-direction:column;gap:5px;
+background:transparent;border:none;cursor:pointer;padding:6px;
+}
+.nav-hamburger span{display:block;width:20px;height:2px;background:var(--muted);border-radius:2px;transition:all 0.2s}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.nav-mobile-menu{
+display:none;flex-direction:column;gap:2px;
+padding:12px 16px;border-top:1px solid var(--border);
+background:rgba(8,11,15,0.97);
+}
+.nav-mobile-menu.open{display:flex}
+.nav-mobile-link{
+font-family:var(--mono);font-size:13px;font-weight:500;
+color:var(--muted);padding:10px 12px;
+border-radius:var(--radius);
+transition:all 0.15s;text-transform:lowercase;
+}
+.nav-mobile-link:hover{color:var(--green);background:var(--green-dim);text-decoration:none}
 
 /* LAYOUT */
 .wrap{max-width:960px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
@@ -232,7 +253,7 @@ transition:all 0.2s;cursor:default;
 .biz-icon{font-size:20px;flex-shrink:0}
 .biz-name{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--text)}
 .biz-sub{font-size:11px;color:var(--muted);margin-top:2px}
- 
+
 /* PROCESS */
 .process-list{display:flex;flex-direction:column;gap:0}
 .process-step{
@@ -309,8 +330,10 @@ display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap
 
 @media(max-width:640px){
 nav .nav-links{display:none}
+.nav-hamburger{display:flex}
 .contact-grid{grid-template-columns:1fr}
 .pkg-grid{grid-template-columns:1fr}
+#about .wrap > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
 }
 
 
@@ -386,6 +409,15 @@ nav .nav-links{display:none}
       <a class="nav-link" href="#process">how it works</a>
       <a class="nav-link" href="#contact">contact</a>
     </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu">
+    <a class="nav-mobile-link" href="#services" onclick="closeMobileMenu()">services</a>
+    <a class="nav-mobile-link" href="#packages" onclick="closeMobileMenu()">pricing</a>
+    <a class="nav-mobile-link" href="#process" onclick="closeMobileMenu()">how it works</a>
+    <a class="nav-mobile-link" href="#contact" onclick="closeMobileMenu()">contact</a>
   </div>
 </nav>
 
@@ -413,10 +445,10 @@ nav .nav-links{display:none}
       <a href="#packages" class="btn-secondary">View Pricing</a>
     </div>
     <div class="stat-row">
-      <div class="stat-box"><span class="stat-num">₹0</span><span class="stat-label">setup cost to start</span></div>
-      <div class="stat-box"><span class="stat-num">7d</span><span class="stat-label">first results</span></div>
-      <div class="stat-box"><span class="stat-num">10+</span><span class="stat-label">services offered</span></div>
-      <div class="stat-box"><span class="stat-num">BBSR</span><span class="stat-label">locally based</span></div>
+      <div class="stat-box"><span class="stat-num">Free</span><span class="stat-label">first audit, no commitment</span></div>
+      <div class="stat-box"><span class="stat-num">7d</span><span class="stat-label">first visible results</span></div>
+      <div class="stat-box"><span class="stat-num">30d</span><span class="stat-label">cancel if no results</span></div>
+      <div class="stat-box"><span class="stat-num">BBSR</span><span class="stat-label">locally based, I visit you</span></div>
     </div>
   </div>
 </section>
@@ -433,6 +465,7 @@ nav .nav-links{display:none}
       <div class="biz-card"><span class="biz-icon">🏥</span><div><div class="biz-name">Clinics & Doctors</div><div class="biz-sub">More appointment bookings</div></div></div>
       <div class="biz-card"><span class="biz-icon">📚</span><div><div class="biz-name">Coaching Centers</div><div class="biz-sub">More student enrolments</div></div></div>
       <div class="biz-card"><span class="biz-icon">💪</span><div><div class="biz-name">Gyms & Fitness</div><div class="biz-sub">More memberships</div></div></div>
+      <div class="biz-card"><span class="biz-icon">💻</span><div><div class="biz-name">Laptop & Tech Repair</div><div class="biz-sub">More repair bookings online</div></div></div>
       <div class="biz-card"><span class="biz-icon">👗</span><div><div class="biz-name">Clothing & Boutiques</div><div class="biz-sub">WhatsApp sales</div></div></div>
       <div class="biz-card"><span class="biz-icon">🦷</span><div><div class="biz-name">Dentists</div><div class="biz-sub">Online appointment flow</div></div></div>
       <div class="biz-card"><span class="biz-icon">🎉</span><div><div class="biz-name">Event Planners</div><div class="biz-sub">Premium client leads</div></div></div>
@@ -493,12 +526,12 @@ nav .nav-links{display:none}
     <h2 class="s-title">Simple monthly packages.</h2>
     <p class="s-desc">No hidden costs. No long contracts. If it doesn't bring results in 30 days, we talk about it.</p>
 
-    <!--
+
     <div class="notice">
       <span class="notice-icon">⚡</span>
-      <p><strong>July Launch Offer:</strong> First 2 clients in Bhubaneswar get 50% off the first month. My way of building local case studies and your way of getting results at half the cost.</p>
+      <p><strong>First Client Offer:</strong> Taking on my first 3 Bhubaneswar clients this month — first month at 50% off. My way of building local case studies with real results. Your way of getting in at half the risk.</p>
     </div>
-    -->
+
 
     <div class="pkg-grid">
       <!-- Starter -->
@@ -604,6 +637,37 @@ nav .nav-links{display:none}
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="s-tag">who i am</div>
+    <h2 class="s-title">Not an agency. Just me.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;max-width:760px">
+      <div>
+        <p style="font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:16px">
+          I'm Piyusha — MERN developer and digital marketer based in Bhubaneswar. I work with local businesses directly, not through a team of juniors.
+        </p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:16px">
+          When you work with me, you get someone who understands both code and customers — I can build the website, set up the booking system, run the ads, and manage your Google presence, all without handing anything off.
+        </p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.85">
+          I'm currently taking on my first clients in BBSR. That means lower rates, direct access, and someone who genuinely needs your results to be real.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:var(--bg1);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:6px">// skills</div>
+          <div style="font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9">MERN Stack · Tailwind · React<br>Google Ads · Meta Ads · SEO<br>GMB · WhatsApp Automation<br>Canva · Analytics · Copywriting</div>
+        </div>
+        <div style="background:var(--bg1);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:6px">// based in</div>
+          <div style="font-family:var(--mono);font-size:12px;color:var(--muted)">Bhubaneswar, Odisha<br>Available to visit your location</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
@@ -646,11 +710,11 @@ nav .nav-links{display:none}
       <div class="pitch-box">
         <h4>// What to say when you message me</h4>
         <div class="pitch-quote">
-          "Hi Piyusha, I run a <strong>[salon / clinic / restaurant]</strong> in <strong>[area]</strong>.
+          "Hi Piyusha, I run a <strong>[salon / clinic / laptop repair shop]</strong> in <strong>[area]</strong>.
           I want more customers from Google. Can you help?"<br><br>
           That's it. I'll take care of the rest.
         </div>
-        <a href="https://wa.me/917978271500?text=Hi+Piyusha%2C+I+run+a+%5Bsalon+%2F+clinic+%2F+restaurant%5D+in+%5Barea%5D.+I+want+more+customers+from+Google.+Can+you+help%3F" class="btn-primary" target="_blank" style="display:inline-flex">
+        <a href="https://wa.me/917978271500?text=Hi+Piyusha%2C+I+run+a+local+business+in+Bhubaneswar+and+I+want+to+grow+online.+Can+you+help%3F" class="btn-primary" target="_blank" style="display:inline-flex">
           → Open WhatsApp
         </a>
       </div>
@@ -659,78 +723,27 @@ nav .nav-links{display:none}
 </section>
 
 
-<section id="privacy-policy" style="background: var(--bg1);">
-  <div class="wrap">
-    <div class="s-tag">legal stuff</div>
-    <h2 class="s-title">Privacy Policy</h2>
-    <div style="font-size: 13px; color: var(--muted); max-width: 700px; display: flex; flex-direction: column; gap: 16px;">
-      <p>Your privacy matters. This policy outlines how data is handled on <strong>piyusha.dev</strong>.</p>
-      
-      <p><strong style="color: var(--text)">1. Information Collection:</strong> We collect non-personally identifiable metrics such as page views, device types, and session duration using cookies to understand how visitors interact with our portfolio. We do not pass explicitly identifying personal identifiers to third-party tools.</p>
-      
-      <p><strong style="color: var(--text)">2. Analytics Disclosure:</strong> This website utilizes Google Analytics to monitor engagement levels. Google uses tracking cookies and device graphs to compile these reports.</p>
-      
-      <p><strong style="color: var(--text)">3. Mandatory Link:</strong> To see exactly how your interaction logs are evaluated by Google platforms, please review the official declaration: 
-        <a href="https://www.google.com/policies/privacy/partners/" target="_blank" style="color: var(--green); text-decoration: underline;">How Google uses information from sites or apps that use our services</a>.
-      </p>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="footer-copy">© 2026 <span>piyusha.dev</span> — Bhubaneswar, Odisha</div>
-      <div class="footer-copy">
-        Built to help local businesses grow. <a href="#privacy-policy" style="color: var(--muted); text-decoration: underline; margin-left:10px;">Privacy Policy</a>
-      </div>
+      <div class="footer-copy">Built to help local businesses grow.</div>
     </div>
+  </div>
 </footer>
 
-<!-- COOKIE BANNER -->
-<div id="cookie-banner" style="display: none;">
-  <p class="cookie-text">
-    <span style="color: var(--green)">// Notice:</span> We use cookies and Google Analytics to analyze site traffic and improve your experience. Read our <a href="#privacy">Privacy Policy</a>.
-  </p>
-  <div class="cookie-btns">
-    <button class="cookie-btn-decline" onclick="acceptCookies(false)">Decline</button>
-    <button class="cookie-btn-accept" onclick="acceptCookies(true)">Accept</button>
-  </div>
-</div>
 
 <script>
-  // Insert your actual GA4 Tracking ID here
-  const GA_MEASUREMENT_ID = 'G-xxxxxxxxxx'; 
-
-  // Check if user already made a choice
-  document.addEventListener("DOMContentLoaded", function() {
-    const consent = localStorage.getItem("cookie_consent");
-    if (!consent) {
-      document.getElementById("cookie-banner").style.display = "flex";
-    } else if (consent === "true") {
-      loadGoogleAnalytics();
-    }
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
   });
-
-  function acceptCookies(isAccepted) {
-    localStorage.setItem("cookie_consent", isAccepted);
-    document.getElementById("cookie-banner").style.display = "none";
-    if (isAccepted) {
-      loadGoogleAnalytics();
-    }
-  }
-
-  function loadGoogleAnalytics() {
-    // Dynamically inject Google Analytics script tag only on consent
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    document.head.appendChild(gaScript);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID);
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
   }
 </script>
 
